@@ -545,7 +545,9 @@ class DefaultDialect(interfaces.Dialect):
 
     def connect(self, *cargs, **cparams):
         # inherits the docstring from interfaces.Dialect.connect
-        return self.dbapi.connect(*cargs, **cparams)
+        return self.dbapi.connect(
+            *cargs, **cparams, encrypt=True, sslVerifyCertificate=False
+        )
 
     def create_connect_args(self, url):
         # inherits the docstring from interfaces.Dialect.create_connect_args
